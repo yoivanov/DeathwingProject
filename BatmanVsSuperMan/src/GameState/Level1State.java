@@ -14,13 +14,14 @@ public class Level1State extends GameState {
 	
 	private TileMap tileMap;
 	private Background bg;
-	
+
 	private Player player;
 	
 	private ArrayList<Enemy> enemies;
 	private ArrayList<Explosion> explosions;
 	
 	private HUD hud;
+	private HUDSuperMan hudSuperMan;
 	
 	private AudioPlayer bgMusic;
 	
@@ -48,6 +49,7 @@ public class Level1State extends GameState {
 		
 		hud = new HUD(player);
 		
+		
 		bgMusic = new AudioPlayer("/Music/level1-1.mp3");
 		bgMusic.play();
 		
@@ -57,6 +59,7 @@ public class Level1State extends GameState {
 		
 		enemies = new ArrayList<Enemy>();
 		Supperman s;
+		
 		Point[] points = new Point[]{
 				new Point(2800,100)
 		};
@@ -64,6 +67,7 @@ public class Level1State extends GameState {
 			s = new Supperman(tileMap);
 			s.setPosition(points[i].x, points[i].y);
 			enemies.add(s);
+			hudSuperMan = new HUDSuperMan(s);
 		}
 		
 		
@@ -146,6 +150,9 @@ public class Level1State extends GameState {
 		
 		// draw hud
 		hud.draw(g);
+		
+		// draw hud
+		hudSuperMan.draw(g);
 		
 	}
 	
