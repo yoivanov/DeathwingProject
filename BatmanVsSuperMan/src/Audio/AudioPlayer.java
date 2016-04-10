@@ -1,7 +1,6 @@
 package Audio;
 
 import javax.sound.sampled.*;
-
 public class AudioPlayer {
 	
 	private Clip clip;
