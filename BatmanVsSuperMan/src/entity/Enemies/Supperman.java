@@ -1,10 +1,13 @@
 package entity.Enemies;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import javax.imageio.ImageIO;
 
-import entity.*;
+import entity.Animation;
+import entity.Enemy;
 import tileMap.TileMap;
 
 public class Supperman extends Enemy {
@@ -80,7 +83,17 @@ private void getNextPosition() {
 	}
 	
 	public void update() {
-		
+		if(this.health <= 0){
+			Timer timer = new Timer();
+			timer.schedule(new TimerTask() {
+				  @Override
+				  public void run() {
+					  System.exit(0);
+				  }
+				}, 2*1000);
+			
+
+		}
 		// update position
 		getNextPosition();
 		checkTileMapCollision();
