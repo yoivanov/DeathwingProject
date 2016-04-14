@@ -79,6 +79,7 @@ public class MenuState extends GameState {
 		}
 		if(currentChoice == 1) {
 			// help
+			System.exit(0);
 		}
 		if(currentChoice == 2) {
 			System.exit(0);
