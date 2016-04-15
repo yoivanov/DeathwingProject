@@ -12,11 +12,11 @@ import java.util.HashMap;
 public class Player extends MapObject {
 	
 	// player stuff
-	public int health;
+	private int health;
 	private int maxHealth;
 	private int fire;
 	private int maxFire;
-	public boolean dead;
+	private boolean dead;
 	private boolean flinching;
 	private long flinchTimer;
 	
@@ -402,6 +402,9 @@ public class Player extends MapObject {
 		
 		super.draw(g);
 		
+	}
+	public boolean isDead(){
+		return dead;
 	}
 	
 }

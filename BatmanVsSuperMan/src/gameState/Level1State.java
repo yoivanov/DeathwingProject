@@ -89,7 +89,7 @@ public class Level1State extends GameState {
 	}
 	
 	public void update() {
-		if(player.dead == true){
+		if(player.isDead()){
 			enemies = new ArrayList<Enemy>();
 			tileMap = new TileMap(30);
 			player = new Player(tileMap);
@@ -164,25 +164,29 @@ public class Level1State extends GameState {
 	}
 	
 	public void keyPressed(int k) {
-		if(k == KeyEvent.VK_LEFT && !player.dead) player.setLeft(true);
-		if(k == KeyEvent.VK_RIGHT && !player.dead) player.setRight(true);
+		if(k == KeyEvent.VK_LEFT && !player.isDead()) player.setLeft(true);
+		if(k == KeyEvent.VK_RIGHT && !player.isDead()) player.setRight(true);
 		//if(k == KeyEvent.VK_UP) player.setUp(true);
 		//if(k == KeyEvent.VK_DOWN) player.setDown(true);
-		if(k == KeyEvent.VK_UP && !player.dead) player.setJumping(true);
-		if(k == KeyEvent.VK_E && !player.dead) player.setGliding(true);
-		if(k == KeyEvent.VK_W && !player.dead) player.setScratching();
-		if(k == KeyEvent.VK_SPACE && !player.dead) player.setFiring();
+		if(k == KeyEvent.VK_UP && !player.isDead()) player.setJumping(true);
+		if(k == KeyEvent.VK_E && !player.isDead()) player.setGliding(true);
+		if(k == KeyEvent.VK_W && !player.isDead()) player.setScratching();
+		if(k == KeyEvent.VK_SPACE && !player.isDead()) player.setFiring();
+		if(k == KeyEvent.VK_ENTER) {
+			gsm.setState(GameStateManager.MENUSTATE);
+			bgMusic.stop();
+		}
 	}
 	
 	public void keyReleased(int k) {
-		if(k == KeyEvent.VK_LEFT && !player.dead) player.setLeft(false);
-		if(k == KeyEvent.VK_RIGHT && !player.dead) player.setRight(false);
+		if(k == KeyEvent.VK_LEFT && !player.isDead()) player.setLeft(false);
+		if(k == KeyEvent.VK_RIGHT && !player.isDead()) player.setRight(false);
 		//if(k == KeyEvent.VK_UP) player.setUp(false);
 		//if(k == KeyEvent.VK_DOWN) player.setDown(false);
-		if(k == KeyEvent.VK_UP && !player.dead) player.setJumping(false);
-		if(k == KeyEvent.VK_E && !player.dead) player.setGliding(false);
-		if(k == KeyEvent.VK_W) player.setScratching();
-		if(k == KeyEvent.VK_SPACE) player.setFiring();
+		if(k == KeyEvent.VK_UP && !player.isDead()) player.setJumping(false);
+		if(k == KeyEvent.VK_E && !player.isDead()) player.setGliding(false);
+		if(k == KeyEvent.VK_W && !player.isDead()) player.setScratching();
+		if(k == KeyEvent.VK_SPACE && !player.isDead()) player.setFiring();
 	}
 	
 }

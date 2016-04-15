@@ -24,11 +24,7 @@ public class GameStateManager {
 			gameStates[state] = new MenuState(this);
 		if(state == LEVEL1STATE)
 			gameStates[state] = new Level1State(this);
-		if(state == GAMEOVER){
-			System.out.print("gaveover");
-			gameStates[state] = new GameOverState(this);
-			
-		}
+
 	}
 	
 	private void unloadState(int state) {
