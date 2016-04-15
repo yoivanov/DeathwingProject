@@ -1,8 +1,8 @@
 package gameState;
-
 import java.awt.*;
 import java.awt.event.KeyEvent;
 
+import entity.Enemy;
 import tileMap.Background;
 
 public class MenuState extends GameState {

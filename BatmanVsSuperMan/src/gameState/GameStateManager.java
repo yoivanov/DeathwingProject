@@ -8,6 +8,7 @@ public class GameStateManager {
 	public static final int NUMGAMESTATES = 2;
 	public static final int MENUSTATE = 0;
 	public static final int LEVEL1STATE = 1;
+	public static final int GAMEOVER = 3;
 	
 	public GameStateManager() {
 		
@@ -23,6 +24,11 @@ public class GameStateManager {
 			gameStates[state] = new MenuState(this);
 		if(state == LEVEL1STATE)
 			gameStates[state] = new Level1State(this);
+		if(state == GAMEOVER){
+			System.out.print("gaveover");
+			gameStates[state] = new GameOverState(this);
+			
+		}
 	}
 	
 	private void unloadState(int state) {

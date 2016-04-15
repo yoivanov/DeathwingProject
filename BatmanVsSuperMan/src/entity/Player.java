@@ -12,11 +12,11 @@ import java.util.HashMap;
 public class Player extends MapObject {
 	
 	// player stuff
-	private int health;
+	public int health;
 	private int maxHealth;
 	private int fire;
 	private int maxFire;
-	private boolean dead;
+	public boolean dead;
 	private boolean flinching;
 	private long flinchTimer;
 	
