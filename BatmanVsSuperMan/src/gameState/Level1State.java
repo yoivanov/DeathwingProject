@@ -58,13 +58,13 @@ public class Level1State extends GameState {
 	private void populateEnemies() {
 		
 		enemies = new ArrayList<Enemy>();
-		Supperman s;
+		Superman s;
 		
 		Point[] points = new Point[]{
 				new Point(2800,100)
 		};
 		for(int i = 0; i < points.length; i++) {
-			s = new Supperman(tileMap);
+			s = new Superman(tileMap);
 			s.setPosition(points[i].x, points[i].y);
 			enemies.add(s);
 			hudSuperMan = new HUDSuperMan(s);
@@ -89,6 +89,13 @@ public class Level1State extends GameState {
 	}
 	
 	public void update() {
+		
+		if(player.getIsDead()){
+			enemies = new ArrayList<Enemy>();
+			tileMap = new TileMap(30);
+			player = new Player(tileMap);
+			bg = new Background("/Backgrounds/game_over.jpeg", 1);
+		}
 		
 		// update player
 		player.update();
@@ -158,25 +165,29 @@ public class Level1State extends GameState {
 	}
 	
 	public void keyPressed(int k) {
-		if(k == KeyEvent.VK_LEFT) player.setLeft(true);
-		if(k == KeyEvent.VK_RIGHT) player.setRight(true);
+		if(k == KeyEvent.VK_LEFT && !player.getIsDead()) player.setLeft(true);
+		if(k == KeyEvent.VK_RIGHT && !player.getIsDead()) player.setRight(true);
 		//if(k == KeyEvent.VK_UP) player.setUp(true);
 		//if(k == KeyEvent.VK_DOWN) player.setDown(true);
-		if(k == KeyEvent.VK_UP) player.setJumping(true);
-		if(k == KeyEvent.VK_E) player.setGliding(true);
-		if(k == KeyEvent.VK_W) player.setScratching();
-		if(k == KeyEvent.VK_SPACE) player.setFiring();
+		if(k == KeyEvent.VK_UP && !player.getIsDead()) player.setJumping(true);
+		if(k == KeyEvent.VK_E && !player.getIsDead()) player.setGliding(true);
+		if(k == KeyEvent.VK_W && !player.getIsDead()) player.setScratching();
+		if(k == KeyEvent.VK_SPACE && !player.getIsDead()) player.setFiring();
+		if(k == KeyEvent.VK_ENTER) {
+			gsm.setState(GameStateManager.MENUSTATE);
+			bgMusic.stop();
+		}
 	}
 	
 	public void keyReleased(int k) {
-		if(k == KeyEvent.VK_LEFT) player.setLeft(false);
-		if(k == KeyEvent.VK_RIGHT) player.setRight(false);
+		if(k == KeyEvent.VK_LEFT && !player.getIsDead()) player.setLeft(false);
+		if(k == KeyEvent.VK_RIGHT && !player.getIsDead()) player.setRight(false);
 		//if(k == KeyEvent.VK_UP) player.setUp(false);
 		//if(k == KeyEvent.VK_DOWN) player.setDown(false);
-		if(k == KeyEvent.VK_UP) player.setJumping(false);
-		if(k == KeyEvent.VK_E) player.setGliding(false);
-		if(k == KeyEvent.VK_W) player.setScratching();
-		if(k == KeyEvent.VK_SPACE) player.setFiring();
+		if(k == KeyEvent.VK_UP && !player.getIsDead()) player.setJumping(false);
+		if(k == KeyEvent.VK_E && !player.getIsDead()) player.setGliding(false);
+		if(k == KeyEvent.VK_W && !player.getIsDead()) player.setScratching();
+		if(k == KeyEvent.VK_SPACE && !player.getIsDead()) player.setFiring();
 	}
 	
 }

@@ -4,15 +4,15 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import javax.imageio.ImageIO;
 
-import entity.Enemies.Supperman;
+import entity.Enemies.Superman;
 
 public class HUDSuperMan {
 	
-	private Supperman superman;
+	private Superman superman;
 	private BufferedImage image;
 	private Font font;
 	
-	public HUDSuperMan(Supperman superManInput) {
+	public HUDSuperMan(Superman superManInput) {
 		superman = superManInput;
 		try {
 			image = ImageIO.read(

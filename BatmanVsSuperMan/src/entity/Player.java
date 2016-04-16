@@ -12,7 +12,7 @@ import java.util.HashMap;
 public class Player extends MapObject {
 	
 	// player stuff
-	private int health;
+	private int health ;
 	private int maxHealth;
 	private int fire;
 	private int maxFire;
@@ -133,6 +133,11 @@ public class Player extends MapObject {
 		sfx = new HashMap<String, AudioPlayer>();
 		sfx.put("jump", new AudioPlayer("/SFX/jump.mp3"));
 		sfx.put("scratch", new AudioPlayer("/SFX/scratch.mp3"));
+		sfx.put("throw", new AudioPlayer("/SFX/Throw.mp3"));
+		
+		sfx.put("Fly", new AudioPlayer("/SFX/Fly.mp3"));
+		sfx.put("bye", new AudioPlayer("/SFX/Bye.mp3"));
+		
 		
 	}
 	
@@ -149,6 +154,8 @@ public class Player extends MapObject {
 	}
 	public void setGliding(boolean b) { 
 		gliding = b;
+		sfx.get("Fly").play();
+		
 	}
 	
 	public void checkAttack(ArrayList<Enemy> enemies) {
@@ -203,11 +210,20 @@ public class Player extends MapObject {
 	public void hit(int damage) {
 		if(flinching) return;
 		health -= damage;
-		if(health < 0) health = 0;
+		if(health == 0) health = 0;
+		
 		if(health == 0) dead = true;
+		if (dead == true) {
+			sfx.get("bye").play();
+
+			
+		}
 		flinching = true;
 		flinchTimer = System.nanoTime();
-	}
+		
+			
+
+		}
 	
 	private void getNextPosition() {
 		
@@ -237,6 +253,7 @@ public class Player extends MapObject {
 					dx = 0;
 				}
 			}
+			
 		}
 		
 		// cannot move while attacking, except in air
@@ -264,9 +281,14 @@ public class Player extends MapObject {
 			
 			if(dy > maxFallSpeed) dy = maxFallSpeed;
 			
+			
 		}
 		
 	}
+	
+	
+		
+			
 	
 	public void update() {
 		
@@ -292,6 +314,7 @@ public class Player extends MapObject {
 				FireBall fb = new FireBall(tileMap, facingRight);
 				fb.setPosition(x, y);
 				fireBalls.add(fb);
+				sfx.get("throw").play();
 			}
 		}
 		
@@ -311,6 +334,7 @@ public class Player extends MapObject {
 			if(elapsed > 1000) {
 				flinching = false;
 			}
+			
 		}
 		
 		// set animation
@@ -402,6 +426,10 @@ public class Player extends MapObject {
 		
 		super.draw(g);
 		
+	}
+	
+	public boolean getIsDead(){
+		return dead;
 	}
 	
 }

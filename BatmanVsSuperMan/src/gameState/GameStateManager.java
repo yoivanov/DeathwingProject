@@ -8,6 +8,7 @@ public class GameStateManager {
 	public static final int NUMGAMESTATES = 2;
 	public static final int MENUSTATE = 0;
 	public static final int LEVEL1STATE = 1;
+	public static final int GAMEOVER = 3;
 	
 	public GameStateManager() {
 		

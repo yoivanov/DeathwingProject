@@ -3,9 +3,11 @@ package entity.Enemies;
 import tileMap.TileMap;
 
 import java.awt.image.BufferedImage;
+
 import java.awt.Graphics2D;
 
 import javax.imageio.ImageIO;
+
 
 import entity.*;
 
@@ -54,6 +56,7 @@ public class Slugger extends Enemy {
 			e.printStackTrace();
 		}
 		
+		
 		animation = new Animation();
 		animation.setFrames(sprites);
 		animation.setDelay(300);
@@ -67,9 +70,11 @@ public class Slugger extends Enemy {
 		
 		// movement
 		if(left) {
+			
 			dx -= moveSpeed;
 			if(dx < -maxSpeed) {
 				dx = -maxSpeed;
+				
 			}
 		}
 		else if(right) {
@@ -77,11 +82,14 @@ public class Slugger extends Enemy {
 			if(dx > maxSpeed) {
 				dx = maxSpeed;
 			}
+			
 		}
+		
 		
 		// falling
 		if(falling) {
 			dy += fallSpeed;
+			
 		}
 		
 	}
