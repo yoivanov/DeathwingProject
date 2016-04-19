@@ -1,8 +1,12 @@
+/HUD/
+/SFX/
 /audio/
+/backgrounds/
 /entity/
 /gameState/
 /main/
-/tileMap/
-/SFX/
-/backgrounds/
 /maps/
+/music/
+/sprites/
+/tileMap/
+/tilesets/

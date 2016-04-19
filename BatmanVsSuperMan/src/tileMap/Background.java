@@ -18,17 +18,13 @@ public class Background {
 	private double moveScale;
 	
 	public Background(String s, double ms) {
-		
 		try {
 			image = ImageIO.read(
-				getClass().getResourceAsStream(s)
-			);
+				getClass().getResourceAsStream(s));
 			moveScale = ms;
-		}
-		catch(Exception e) {
+		} catch(Exception e) {
 			e.printStackTrace();
 		}
-		
 	}
 	
 	public void setPosition(double x, double y) {
@@ -46,8 +42,7 @@ public class Background {
 		y += dy;
 	}
 	
-	public void draw(Graphics2D g) {
-		
+	public void draw(Graphics2D g) {	
 		g.drawImage(image, (int)x, (int)y, null);
 		
 		if(x < 0) {
@@ -55,24 +50,14 @@ public class Background {
 				image,
 				(int)x + GamePanel.WIDTH,
 				(int)y,
-				null
-			);
+				null);
 		}
 		if(x > 0) {
 			g.drawImage(
 				image,
 				(int)x - GamePanel.WIDTH,
 				(int)y,
-				null
-			);
+				null);
 		}
 	}
-	
 }
-
-
-
-
-
-
-

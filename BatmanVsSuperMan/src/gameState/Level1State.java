@@ -31,7 +31,6 @@ public class Level1State extends GameState {
 	}
 	
 	public void init() {
-		
 		tileMap = new TileMap(30);
 		tileMap.loadTiles("/Tilesets/urbantileset.gif");
 		tileMap.loadMap("/Maps/level1-1.map");
@@ -49,14 +48,11 @@ public class Level1State extends GameState {
 		
 		hud = new HUD(player);
 		
-		
 		bgMusic = new AudioPlayer("/Music/level1-1.mp3");
 		bgMusic.play();
-		
 	}
 	
 	private void populateEnemies() {
-		
 		enemies = new ArrayList<Enemy>();
 		Superman s;
 		
@@ -70,7 +66,6 @@ public class Level1State extends GameState {
 			hudSuperMan = new HUDSuperMan(s);
 		}
 		
-		
 		Slugger s1;
 		Point[] points1 = new Point[] {
 			new Point(200, 100),
@@ -78,18 +73,16 @@ public class Level1State extends GameState {
 			new Point(1525, 200),
 			new Point(1680, 200),
 			new Point(1800, 200),
-			
 		};
+		
 		for(int i = 0; i < points1.length; i++) {
 			s1 = new Slugger(tileMap);
 			s1.setPosition(points1[i].x, points1[i].y);
 			enemies.add(s1);
 		}
-		
 	}
 	
 	public void update() {
-		
 		if(player.getIsDead()){
 			enemies = new ArrayList<Enemy>();
 			tileMap = new TileMap(30);
@@ -101,8 +94,7 @@ public class Level1State extends GameState {
 		player.update();
 		tileMap.setPosition(
 			GamePanel.WIDTH / 2 - player.getx(),
-			GamePanel.HEIGHT / 2 - player.gety()
-		);
+			GamePanel.HEIGHT / 2 - player.gety());
 		
 		// set background
 		bg.setPosition(tileMap.getx(), tileMap.gety());
@@ -117,8 +109,7 @@ public class Level1State extends GameState {
 			if(e.isDead()) {
 				enemies.remove(i);
 				i--;
-				explosions.add(
-					new Explosion(e.getx(), e.gety()));
+				explosions.add(new Explosion(e.getx(), e.gety()));
 			}
 		}
 		
@@ -129,12 +120,10 @@ public class Level1State extends GameState {
 				explosions.remove(i);
 				i--;
 			}
-		}
-		
+		}	
 	}
 	
 	public void draw(Graphics2D g) {
-		
 		// draw bg
 		bg.draw(g);
 		
@@ -161,14 +150,11 @@ public class Level1State extends GameState {
 		
 		// draw hud
 		hudSuperMan.draw(g);
-		
 	}
 	
 	public void keyPressed(int k) {
 		if(k == KeyEvent.VK_LEFT && !player.getIsDead()) player.setLeft(true);
 		if(k == KeyEvent.VK_RIGHT && !player.getIsDead()) player.setRight(true);
-		//if(k == KeyEvent.VK_UP) player.setUp(true);
-		//if(k == KeyEvent.VK_DOWN) player.setDown(true);
 		if(k == KeyEvent.VK_UP && !player.getIsDead()) player.setJumping(true);
 		if(k == KeyEvent.VK_E && !player.getIsDead()) player.setGliding(true);
 		if(k == KeyEvent.VK_W && !player.getIsDead()) player.setScratching();
@@ -182,24 +168,9 @@ public class Level1State extends GameState {
 	public void keyReleased(int k) {
 		if(k == KeyEvent.VK_LEFT && !player.getIsDead()) player.setLeft(false);
 		if(k == KeyEvent.VK_RIGHT && !player.getIsDead()) player.setRight(false);
-		//if(k == KeyEvent.VK_UP) player.setUp(false);
-		//if(k == KeyEvent.VK_DOWN) player.setDown(false);
 		if(k == KeyEvent.VK_UP && !player.getIsDead()) player.setJumping(false);
 		if(k == KeyEvent.VK_E && !player.getIsDead()) player.setGliding(false);
 		if(k == KeyEvent.VK_W && !player.getIsDead()) player.setScratching();
 		if(k == KeyEvent.VK_SPACE && !player.getIsDead()) player.setFiring();
 	}
-	
 }
-
-
-
-
-
-
-
-
-
-
-
-

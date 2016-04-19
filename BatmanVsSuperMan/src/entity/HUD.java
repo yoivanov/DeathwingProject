@@ -7,7 +7,6 @@ import javax.imageio.ImageIO;
 public class HUD {
 	
 	private Player player;
-	
 	private BufferedImage image;
 	private Font font;
 	
@@ -16,9 +15,7 @@ public class HUD {
 		try {
 			image = ImageIO.read(
 				getClass().getResourceAsStream(
-					"/HUD/hud.gif"
-				)
-			);
+					"/HUD/hud.gif"));
 			font = new Font("Arial", Font.BOLD, 14);
 		}
 		catch(Exception e) {
@@ -34,27 +31,10 @@ public class HUD {
 		g.drawString(
 			player.getHealth() + "/" + player.getMaxHealth(),
 			30,
-			25
-		);
+			25);
 		g.drawString(
 			player.getFire() / 100 + "/" + player.getMaxFire() / 100,
 			30,
-			45
-		);
-		
+			45);
 	}
-	
 }
-
-
-
-
-
-
-
-
-
-
-
-
-

@@ -20,7 +20,6 @@ public class Explosion {
 	private boolean remove;
 	
 	public Explosion(int x, int y) {
-		
 		this.x = x;
 		this.y = y;
 		
@@ -28,12 +27,9 @@ public class Explosion {
 		height = 30;
 		
 		try {
-			
 			BufferedImage spritesheet = ImageIO.read(
 				getClass().getResourceAsStream(
-					"/Sprites/Enemies/explosion.gif"
-				)
-			);
+					"/Sprites/Enemies/explosion.gif"));
 			
 			sprites = new BufferedImage[6];
 			for(int i = 0; i < sprites.length; i++) {
@@ -41,10 +37,8 @@ public class Explosion {
 					i * width,
 					0,
 					width,
-					height
-				);
-			}
-			
+					height);
+				}
 		}
 		catch(Exception e) {
 			e.printStackTrace();
@@ -52,9 +46,10 @@ public class Explosion {
 		
 		animation = new Animation();
 		animation.setFrames(sprites);
-		animation.setDelay(130);
-		
+		animation.setDelay(130);		
 	}
+	
+	public boolean shouldRemove() { return remove; }
 	
 	public void update() {
 		animation.update();
@@ -62,8 +57,6 @@ public class Explosion {
 			remove = true;
 		}
 	}
-	
-	public boolean shouldRemove() { return remove; }
 	
 	public void setMapPosition(int x, int y) {
 		xmap = x;
@@ -78,22 +71,4 @@ public class Explosion {
 			null
 		);
 	}
-	
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

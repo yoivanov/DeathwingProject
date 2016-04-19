@@ -14,11 +14,8 @@ public class FireBall extends MapObject {
 	private BufferedImage[] hitSprites;
 	
 	public FireBall(TileMap tm, boolean right) {
-		
 		super(tm);
-		
-		facingRight = right;
-		
+		facingRight = right;	
 		moveSpeed = 3.8;
 		if(right) dx = moveSpeed;
 		else dx = -moveSpeed;
@@ -30,12 +27,9 @@ public class FireBall extends MapObject {
 		
 		// load sprites
 		try {
-			
 			BufferedImage spritesheet = ImageIO.read(
 				getClass().getResourceAsStream(
-					"/Sprites/Player/fireballs.gif"
-				)
-			);
+					"/Sprites/Player/fireballs.gif"));
 			
 			sprites = new BufferedImage[4];
 			for(int i = 0; i < sprites.length; i++) {
@@ -43,9 +37,8 @@ public class FireBall extends MapObject {
 					i * width,
 					0,
 					width,
-					height
-				);
-			}
+					height);
+				}
 			
 			hitSprites = new BufferedImage[3];
 			for(int i = 0; i < hitSprites.length; i++) {
@@ -53,36 +46,34 @@ public class FireBall extends MapObject {
 					i * width,
 					height,
 					width,
-					height
-				);
-			}
+					height);
+				}
 			
 			animation = new Animation();
 			animation.setFrames(sprites);
 			animation.setDelay(70);
-			
 		}
 		catch(Exception e) {
 			e.printStackTrace();
 		}
-		
 	}
 	
+	public boolean shouldRemove() { return remove; }
+	
 	public void setHit() {
-		if(hit) return;
+		if(hit) {
+			return;
+		}
+		
 		hit = true;
 		animation.setFrames(hitSprites);
 		animation.setDelay(70);
 		dx = 0;
 	}
 	
-	public boolean shouldRemove() { return remove; }
-	
 	public void update() {
-		
 		checkTileMapCollision();
 		setPosition(xtemp, ytemp);
-		
 		if(dx == 0 && !hit) {
 			setHit();
 		}
@@ -91,33 +82,10 @@ public class FireBall extends MapObject {
 		if(hit && animation.hasPlayedOnce()) {
 			remove = true;
 		}
-		
 	}
 	
 	public void draw(Graphics2D g) {
-		
 		setMapPosition();
-		
 		super.draw(g);
-		
 	}
-	
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

@@ -16,7 +16,6 @@ public class Slugger extends Enemy {
 	private BufferedImage[] sprites;
 	
 	public Slugger(TileMap tm) {
-		
 		super(tm);
 		
 		moveSpeed = 0.3;
@@ -29,17 +28,14 @@ public class Slugger extends Enemy {
 		cwidth = 20;
 		cheight = 20;
 		
-		health = maxHealth = 2;
+		health = maxHealth = 8;
 		damage = 1;
 		
 		// load sprites
 		try {
-			
 			BufferedImage spritesheet = ImageIO.read(
-				getClass().getResourceAsStream(
-					"/Sprites/Enemies/slugger.gif"
-				)
-			);
+					getClass().getResourceAsStream(
+					"/Sprites/Enemies/slugger.gif"));
 			
 			sprites = new BufferedImage[3];
 			for(int i = 0; i < sprites.length; i++) {
@@ -47,34 +43,26 @@ public class Slugger extends Enemy {
 					i * width,
 					0,
 					width,
-					height
-				);
-			}
-			
-		}
-		catch(Exception e) {
+					height);
+				}
+		} catch(Exception e) {
 			e.printStackTrace();
 		}
-		
-		
+				
 		animation = new Animation();
 		animation.setFrames(sprites);
 		animation.setDelay(300);
 		
 		right = true;
 		facingRight = true;
-		
 	}
 	
 	private void getNextPosition() {
-		
 		// movement
 		if(left) {
-			
 			dx -= moveSpeed;
 			if(dx < -maxSpeed) {
 				dx = -maxSpeed;
-				
 			}
 		}
 		else if(right) {
@@ -82,20 +70,15 @@ public class Slugger extends Enemy {
 			if(dx > maxSpeed) {
 				dx = maxSpeed;
 			}
-			
 		}
-		
 		
 		// falling
 		if(falling) {
 			dy += fallSpeed;
-			
 		}
-		
 	}
 	
 	public void update() {
-		
 		// update position
 		getNextPosition();
 		checkTileMapCollision();
@@ -124,28 +107,10 @@ public class Slugger extends Enemy {
 		
 		// update animation
 		animation.update();
-		
 	}
 	
-	public void draw(Graphics2D g) {
-		
-		//if(notOnScreen()) return;
-		
+	public void draw(Graphics2D g) {	
 		setMapPosition();
-		
-		super.draw(g);
-		
+		super.draw(g);	
 	}
-	
 }
-
-
-
-
-
-
-
-
-
-
-

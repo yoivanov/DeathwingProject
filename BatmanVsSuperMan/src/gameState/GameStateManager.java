@@ -10,20 +10,20 @@ public class GameStateManager {
 	public static final int LEVEL1STATE = 1;
 	public static final int GAMEOVER = 3;
 	
-	public GameStateManager() {
-		
+	public GameStateManager() {	
 		gameStates = new GameState[NUMGAMESTATES];
-		
 		currentState = MENUSTATE;
 		loadState(currentState);
-		
 	}
 	
 	private void loadState(int state) {
-		if(state == MENUSTATE)
+		if(state == MENUSTATE){
 			gameStates[state] = new MenuState(this);
-		if(state == LEVEL1STATE)
+		}
+			
+		if(state == LEVEL1STATE){
 			gameStates[state] = new Level1State(this);
+		}
 	}
 	
 	private void unloadState(int state) {
@@ -34,19 +34,22 @@ public class GameStateManager {
 		unloadState(currentState);
 		currentState = state;
 		loadState(currentState);
-		//gameStates[currentState].init();
 	}
 	
 	public void update() {
 		try {
 			gameStates[currentState].update();
-		} catch(Exception e) {}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 	
 	public void draw(java.awt.Graphics2D g) {
 		try {
 			gameStates[currentState].draw(g);
-		} catch(Exception e) {}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 	
 	public void keyPressed(int k) {
@@ -56,14 +59,4 @@ public class GameStateManager {
 	public void keyReleased(int k) {
 		gameStates[currentState].keyReleased(k);
 	}
-	
 }
-
-
-
-
-
-
-
-
-

@@ -17,30 +17,20 @@ public class MenuState extends GameState {
 	
 	private Color titleColor;
 	private Font titleFont;
-	
 	private Font font;
 	
 	public MenuState(GameStateManager gsm) {
-		
 		this.gsm = gsm;
 		
 		try {
-			
 			bg = new Background("/Backgrounds/gotham.jpg", 1);
 			bg.setVector(-0.1, 0);
-			
 			titleColor = new Color(128, 0, 0);
-			titleFont = new Font("Century Gothic", Font.TYPE1_FONT, 20);
-			
-			font = new Font("Arial", Font.TYPE1_FONT, 12);
-			
-			font = new Font("Arial", Font.PLAIN, 12);
-			
-		}
-		catch(Exception e) {
+			titleFont = new Font("Century Gothic", Font.TYPE1_FONT, 20);	
+			font = new Font("Arial", Font.BOLD, 14);
+		} catch(Exception e) {
 			e.printStackTrace();
 		}
-		
 	}
 	
 	public void init() {}
@@ -50,7 +40,6 @@ public class MenuState extends GameState {
 	}
 	
 	public void draw(Graphics2D g) {
-		
 		// draw bg
 		bg.draw(g);
 		
@@ -68,20 +57,16 @@ public class MenuState extends GameState {
 			else {
 				g.setColor(Color.YELLOW);
 			}
-			g.drawString(options[i], 145, 200 + i * 25);
+			g.drawString(options[i], 145, 207 + i * 25);
 		}
-		
 	}
 	
 	private void select() {
 		if(currentChoice == 0) {
 			gsm.setState(GameStateManager.LEVEL1STATE);
 		}
+		
 		if(currentChoice == 1) {
-			// help
-			System.exit(0);
-		}
-		if(currentChoice == 2) {
 			System.exit(0);
 		}
 	}
@@ -90,12 +75,14 @@ public class MenuState extends GameState {
 		if(k == KeyEvent.VK_ENTER){
 			select();
 		}
+		
 		if(k == KeyEvent.VK_UP) {
 			currentChoice--;
 			if(currentChoice == -1) {
 				currentChoice = options.length - 1;
 			}
 		}
+		
 		if(k == KeyEvent.VK_DOWN) {
 			currentChoice++;
 			if(currentChoice == options.length) {
@@ -103,16 +90,6 @@ public class MenuState extends GameState {
 			}
 		}
 	}
-	public void keyReleased(int k) {}
 	
+	public void keyReleased(int k) {}
 }
-
-
-
-
-
-
-
-
-
-
