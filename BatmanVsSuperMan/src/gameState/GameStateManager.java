@@ -5,10 +5,10 @@ public class GameStateManager {
 	private GameState[] gameStates;
 	private int currentState;
 	
-	public static final int NUMGAMESTATES = 2;
+	public static final int NUMGAMESTATES = 3;
 	public static final int MENUSTATE = 0;
 	public static final int LEVEL1STATE = 1;
-	public static final int GAMEOVER = 3;
+	public static final int GAMEOVER = 2;
 	
 	public GameStateManager() {	
 		gameStates = new GameState[NUMGAMESTATES];
@@ -24,6 +24,10 @@ public class GameStateManager {
 		if(state == LEVEL1STATE){
 			gameStates[state] = new Level1State(this);
 		}
+		
+		if(state == GAMEOVER){
+			gameStates[state] = new GameOverState(this);
+		}
 	}
 	
 	private void unloadState(int state) {
@@ -37,18 +41,22 @@ public class GameStateManager {
 	}
 	
 	public void update() {
-		try {
-			gameStates[currentState].update();
-		} catch (Exception e) {
-			e.printStackTrace();
+		if (gameStates[currentState]!=null){
+			try {
+				gameStates[currentState].update();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		}
 	}
 	
 	public void draw(java.awt.Graphics2D g) {
-		try {
-			gameStates[currentState].draw(g);
-		} catch (Exception e) {
-			e.printStackTrace();
+		if (gameStates[currentState]!=null){
+			try {
+				gameStates[currentState].draw(g);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		}
 	}
 	

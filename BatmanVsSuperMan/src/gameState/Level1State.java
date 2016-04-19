@@ -83,11 +83,8 @@ public class Level1State extends GameState {
 	}
 	
 	public void update() {
-		if(player.getIsDead()){
-			enemies = new ArrayList<Enemy>();
-			tileMap = new TileMap(30);
-			player = new Player(tileMap);
-			bg = new Background("/Backgrounds/game_over.jpeg", 1);
+		if(player.getIsDead()){	
+			gsm.setState(GameStateManager.GAMEOVER);
 		}
 		
 		// update player
@@ -120,7 +117,7 @@ public class Level1State extends GameState {
 				explosions.remove(i);
 				i--;
 			}
-		}	
+		}
 	}
 	
 	public void draw(Graphics2D g) {
