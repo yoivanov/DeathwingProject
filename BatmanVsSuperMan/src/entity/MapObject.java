@@ -223,7 +223,7 @@ public abstract class MapObject {
 
 	// check if the player has fallen into an abyss
 	public boolean FellIntoAbyss() {
-		return (y + ymap + height / 2) >= GamePanel.HEIGHT;
+		return (y + ymap + height) > GamePanel.HEIGHT;
 	}
 
 	public void draw(java.awt.Graphics2D g) {
